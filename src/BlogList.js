@@ -1,11 +1,14 @@
-const BlogList = ({blogs, handleDelete}) => {
+import {Link} from "react-router-dom";
+
+const BlogList = ({blogs}) => {
     return (
         <div className="blog-kist">
             {blogs.map((blog) => (
                 <div className="blog-preview" key={blog.id}>
-                    <h2>{blog.title}</h2>
-                    <p>Written by {blog.author}</p>
-                    <button onClick={() => handleDelete(blog.id)}>Delete</button>
+                    <Link to={'/blogs/' + blog.id}>
+                        <h2>{blog.title}</h2>
+                        <p>Written by {blog.author}</p>
+                    </Link>
                 </div>
             ))}
         </div>
