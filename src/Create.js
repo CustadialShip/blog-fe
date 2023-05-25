@@ -1,30 +1,46 @@
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
+    const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const blog = {title, body, author};
+
+        setIsPending(true);
+
+        fetch('http://localhost:8080/blogs', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(blog)
+        }).then(() => {
+            console.log("added");
+            setIsPending(false);
+            history.push('/');
+        });
+    };
 
     return (
         <div className="create">
             <h2>Add a new Blog</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Blog title:</label>
                 <input
                     type="text"
                     required
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}/>
-            </form>
-            <form>
                 <label>Blog body:</label>
                 <textarea
                     required
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-            </form>
-            <form>
                 <label>Blog author:</label>
                 <select
                     value={author}
@@ -33,7 +49,8 @@ const Create = () => {
                     <option value="mario">mario</option>
                     <option value="yoshi">yoshi</option>
                 </select>
-                <button>Add block</button>
+                {!isPending && <button>Add block</button>}
+                {isPending && <button disabled>Adding blog...</button>}
             </form>
         </div>
     );
