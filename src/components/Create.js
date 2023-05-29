@@ -1,7 +1,11 @@
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import Cookies from "universal-cookie";
+
 
 const Create = () => {
+    const cookies = new Cookies();
+
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
@@ -16,10 +20,13 @@ const Create = () => {
 
         fetch('/blogs', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(blog)
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
+            },
+            body: JSON.stringify(blog),
+
         }).then(() => {
-            console.log("added");
             setIsPending(false);
             history.push('/');
         });
