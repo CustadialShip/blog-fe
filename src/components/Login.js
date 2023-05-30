@@ -42,7 +42,7 @@ const Login = () => {
             })
             .then(data => {
                 login(data.token);
-                history.push("/");
+                history.push("/home");
             })
             .catch((err) => {
                 setError(err.message);
