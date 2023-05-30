@@ -36,7 +36,7 @@ const Login = () => {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw Error("Wrong username or password. Please tyr again");
+                    throw Error("Wrong username or password. Please try again");
                 }
                 return response.json();
             })
@@ -52,7 +52,7 @@ const Login = () => {
 
     return (
         <div className="login">
-            <h2>Login</h2>
+            <h2>Welcome!</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label>Username:</label>
                 <input
@@ -66,7 +66,7 @@ const Login = () => {
                     required
                     value={passwordIn}
                     onChange={(e) => setPassword(e.target.value)}/>
-                {error && <div>{error}</div>}
+                {error && <div className="error"><h4>{error}</h4></div>}
                 {!isPending && <button>Log in</button>}
                 {isPending && <button disabled>Log in...</button>}
             </form>
