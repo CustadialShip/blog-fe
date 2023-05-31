@@ -10,7 +10,7 @@ const BlogDetails = () => {
       fetch('/blogs/' + blog.id, {
           method: 'DELETE'
       }).then(() => {
-          history.push('/');
+          history.push('/home');
       });
     }
 

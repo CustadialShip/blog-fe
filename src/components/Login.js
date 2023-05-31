@@ -59,13 +59,15 @@ const Login = () => {
                     type="text"
                     required
                     value={usernameIn}
-                    onChange={(e) => setUsername(e.target.value)}/>
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder='Enter username'/>
                 <label>Password:</label>
                 <input
                     type="text"
                     required
                     value={passwordIn}
-                    onChange={(e) => setPassword(e.target.value)}/>
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='Enter password'/>
                 {error && <div className="error"><h4>{error}</h4></div>}
                 {!isPending && <button>Log in</button>}
                 {isPending && <button disabled>Log in...</button>}

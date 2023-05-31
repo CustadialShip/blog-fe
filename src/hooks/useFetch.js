@@ -17,22 +17,22 @@ const useFetch = (url) => {
                 'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
             },
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw Error("Failed to fetch data");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setData(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setIsPending(false);
-            })
-    }, [url, cookies]);
+        .then(response => {
+            if (!response.ok) {
+                throw Error("Failed to fetch data");
+            }
+            return response.json();
+        })
+        .then(data => {
+            setData(data);
+            setIsPending(false);
+            setError(null);
+        })
+        .catch((err) => {
+            setError(err.message);
+            setIsPending(false);
+        })
+    }, [url]);
 
     return {data, isPending, error};
 }

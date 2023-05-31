@@ -28,7 +28,7 @@ const Create = () => {
 
         }).then(() => {
             setIsPending(false);
-            history.push('/');
+            history.push('/home');
         });
     };
 
