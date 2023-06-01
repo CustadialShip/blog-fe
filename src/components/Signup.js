@@ -1,13 +1,15 @@
 import Cookies from "universal-cookie";
 import {useState} from "react";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import jwt from "jwt-decode";
 
-const Login = () => {
+const Signup = () => {
     const cookies = new Cookies();
 
     const [usernameIn, setUsername] = useState('');
     const [passwordIn, setPassword] = useState('');
+    const [firstNameIn, setFirstNameIn] = useState('');
+    const [secondNameIn, setSecondNameIn] = useState('');
     const [error, setError] = useState('');
     const [isPending, setIsPending] = useState(false);
 
@@ -26,17 +28,19 @@ const Login = () => {
 
         setIsPending(true);
 
-        fetch('/api/v1/auth/authenticate', {
+        fetch('/api/v1/auth/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                firstName: firstNameIn,
+                secondName: secondNameIn,
                 username: usernameIn,
                 password: passwordIn
             })
         })
             .then(response => {
                 if (!response.ok) {
-                    throw Error("Wrong username or password. Please try again");
+                    throw Error("Something went wrong. Please try again");
                 }
                 return response.json();
             })
@@ -54,6 +58,20 @@ const Login = () => {
         <div className="login">
             <h2>Welcome!</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
+                <label>First name:</label>
+                <input
+                    type="text"
+                    required
+                    value={firstNameIn}
+                    onChange={(e) => setFirstNameIn(e.target.value)}
+                    placeholder='Enter first name'/>
+                <label>Second name:</label>
+                <input
+                    type="text"
+                    required
+                    value={secondNameIn}
+                    onChange={(e) => setSecondNameIn(e.target.value)}
+                    placeholder='Enter second name'/>
                 <label>Username:</label>
                 <input
                     type="text"
@@ -69,16 +87,11 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Enter password'/>
                 {error && <div className="error"><h4>{error}</h4></div>}
-                {!isPending && <button>Log in</button>}
-                {isPending && <button disabled>Log in...</button>}
+                {!isPending && <button>Sign up</button>}
+                {isPending && <button disabled>Sign up...</button>}
             </form>
-            <div className="signup">
-                <h5>
-                    Need an account? <Link to="/signup">Sign up</Link>
-                </h5>
-            </div>
         </div>
     );
 }
 
-export default Login;
+export default Signup;
