@@ -5,13 +5,12 @@ import jwt from "jwt-decode";
 
 const Login = () => {
     const cookies = new Cookies();
+    const history = useHistory();
 
     const [usernameIn, setUsername] = useState('');
     const [passwordIn, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isPending, setIsPending] = useState(false);
-
-    const history = useHistory();
 
     const login = (jwt_token) => {
         const decode = jwt(jwt_token);

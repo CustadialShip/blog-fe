@@ -9,12 +9,13 @@ const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
+    const [access , setAccess] = useState('private');
     const [isPending, setIsPending] = useState(false);
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = {title, body, author};
+        const blog = {title, body, access};
 
         setIsPending(true);
 
@@ -48,16 +49,17 @@ const Create = () => {
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-                <label>Blog author:</label>
                 <select
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
+                    value={access}
+                    onChange={(e) => setAccess(e.target.value)}
                 >
-                    <option value="mario">mario</option>
-                    <option value="yoshi">yoshi</option>
+                    <option value="public">public</option>
+                    <option value="private">private</option>
                 </select>
-                {!isPending && <button>Add block</button>}
-                {isPending && <button disabled>Adding blog...</button>}
+                <div>
+                    {!isPending && <button>Add block</button>}
+                    {isPending && <button disabled>Adding blog...</button>}
+                </div>
             </form>
         </div>
     );
