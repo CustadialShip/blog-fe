@@ -71,7 +71,7 @@ const Login = () => {
                 {!isPending && <button>Log in</button>}
                 {isPending && <button disabled>Log in...</button>}
             </form>
-            <div className="signup">
+            <div className="signup-link">
                 <h5>
                     Need an account? <Link to="/signup">Sign up</Link>
                 </h5>

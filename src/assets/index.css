@@ -154,7 +154,49 @@
   padding: 8px;
 }
 
-.signup h5 {
+/* signup form */
+.signup {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signup label {
+  text-align: left;
+  display: block;
+}
+
+.signup h2 {
+  font-size: 20px;
+  color: #35a3f1;
+  margin-bottom: 30px;
+}
+
+.signup input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.signup button {
+  background: #35a3f1;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signup h4{
+  color: #ee2828;
+  border: 0;
+  padding: 8px;
+}
+
+.signup-link h5 {
   font-size: 14px;
   color: #988d8d;
   padding: 8px;

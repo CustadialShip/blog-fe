@@ -1,6 +1,6 @@
 import Cookies from "universal-cookie";
 import {useState} from "react";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import jwt from "jwt-decode";
 
 const Signup = () => {
@@ -55,8 +55,8 @@ const Signup = () => {
     };
 
     return (
-        <div className="login">
-            <h2>Welcome!</h2>
+        <div className="signup">
+            <h2>Create a Freespace account</h2>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label>First name:</label>
                 <input
@@ -87,9 +87,14 @@ const Signup = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Enter password'/>
                 {error && <div className="error"><h4>{error}</h4></div>}
-                {!isPending && <button>Sign up</button>}
-                {isPending && <button disabled>Sign up...</button>}
+                {!isPending && <button>Sign Up</button>}
+                {isPending && <button disabled>Sign Up...</button>}
             </form>
+            <div className="signup-link">
+                <h5>
+                    Already have an account? <Link to="/login">Log In</Link>
+                </h5>
+            </div>
         </div>
     );
 }
