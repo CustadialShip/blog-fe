@@ -221,3 +221,36 @@
 .stats h2 {
   margin-top: 20px;
 }
+
+.mobile-btn {
+  display: none;
+}
+
+@media (max-width: 550px) {
+  .mobile-btn {
+    display: block;
+  }
+
+  .navbar-menu {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: #a5d3f6;
+    z-index: 10;
+    transition: left 1s;
+    font-size: 250%;
+  }
+
+  .navbar-menu-active {
+    left: -100%
+  }
+
+}
