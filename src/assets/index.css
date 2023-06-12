@@ -201,3 +201,23 @@
   color: #988d8d;
   padding: 8px;
 }
+
+/* profile stats */
+.profile table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.profile table, td {
+  border: 1px solid;
+}
+
+
+.profile td {
+  padding: 10px;
+}
+
+.stats h2 {
+  margin-top: 20px;
+}

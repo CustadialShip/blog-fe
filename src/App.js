@@ -7,6 +7,7 @@ import BlogDetails from "./components/BlogDetails";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Profile from "./components/Profile";
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
                         </Route>
                         <Route path="/blogs/:id">
                             <BlogDetails/>
+                        </Route>
+                        <Route path="/profile">
+                            <Profile/>
                         </Route>
                         <Route path="*">
                             <NotFound/>
