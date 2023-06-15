@@ -7,6 +7,7 @@ const BlogDetails = () => {
 
     const {id} = useParams();
     const {data: blog, isPending, error} = useFetch('/blogs/' + id);
+    const {data: isShowDeleteBtn} = useFetch('/blogs/isMy/' + id);
     const history = useHistory();
 
     const handleClick = () => {
@@ -30,7 +31,7 @@ const BlogDetails = () => {
                     <h2>{blog.title}</h2>
                     <p>Written by {blog.author}</p>
                     <div>{blog.body}</div>
-                    <button onClick={handleClick}>Delete</button>
+                    {isShowDeleteBtn && (<button onClick={handleClick}>Delete</button>)}
                 </article>
             )}
         </div>
