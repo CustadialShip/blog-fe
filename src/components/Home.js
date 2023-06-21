@@ -1,17 +1,41 @@
-import BlogList from "./BlogList";
 import useFetch from "../hooks/useFetch";
+import BlogList from "./BlogList";
+import {useEffect, useState} from "react";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Home = () => {
 
-    const {data: blogs, isPending, error} = useFetch('/blogs');
+    const [currentPage, setCurrentPage] = useState(1);
+    const {data: responseBlogs, isPending, error} = useFetch('/blogs?page=' + currentPage);
+    const [pageNumbers, setPageNumbers] = useState(null);
+
+    useEffect(() => {
+        if (responseBlogs && responseBlogs.totalPage) {
+            setPageNumbers([...Array(responseBlogs.totalPage).keys()].slice(1));
+        }
+    }, [responseBlogs]);
+
+    const handleChange = (event, value) => {
+        setCurrentPage(value);
+    };
 
     return (
         <div className="home">
-            {error && <div>{ error }</div>}
+            {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            {blogs && <BlogList blogs={blogs} />}
+            {responseBlogs && responseBlogs.blogs && <BlogList blogs={responseBlogs.blogs}/>}
+            <div className="blogPagination">
+                <Stack spacing={2}>
+                    {pageNumbers && <Pagination count={pageNumbers.length}
+                                                page={currentPage}
+                                                onChange={handleChange}
+                                                defaultPage={1}/>}
+                </Stack>
+            </div>
         </div>
     );
+
 };
 
 export default Home;

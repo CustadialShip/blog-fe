@@ -76,7 +76,7 @@
   color: #fff;
   border: 0;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -108,7 +108,7 @@
   color: #fff;
   border: 0;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -144,7 +144,7 @@
   color: #fff;
   border: 0;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -186,7 +186,7 @@
   color: #fff;
   border: 0;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -252,5 +252,35 @@
   .navbar-menu-active {
     left: -100%
   }
+}
 
+
+.comment-list input {
+  border: 1px none #ddd;
+  border-bottom-style: solid;
+  width: 80%;
+  margin-right: 10px;
+}
+
+.comment-list button {
+  height: 30px;
+  background: #35a3f1;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-view span {
+  margin-right: 15px;
+}
+
+.comment-posted {
+  font-size: 80%;
+  color: #9b9b9b;
+}
+
+.comment-body {
+  margin-top: 8px !important;
 }
