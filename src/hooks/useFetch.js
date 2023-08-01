@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import {useHistory} from "react-router-dom";
 
 const useFetch = (url) => {
+    const DATA_SERVICE_URL = process.env.REACT_APP_DATA_AUTH_SERVICE;
 
     const cookies = new Cookies();
     const history = useHistory();
@@ -12,7 +13,7 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(url, {
+        fetch(DATA_SERVICE_URL + url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

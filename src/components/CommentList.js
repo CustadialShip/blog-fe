@@ -4,13 +4,14 @@ import moment from 'moment';
 import useFetch from "../hooks/useFetch";
 
 const CommentList = ({blogId}) => {
+    const DATA_SERVICE_URL = process.env.REACT_APP_DATA_AUTH_SERVICE;
 
     const cookies = new Cookies();
     const [commentMessage, setCommentMessage] = useState('');
     const {data: comments} = useFetch('/comments/' + blogId);
 
     const handlePostComment = () => {
-        fetch('/comments', {
+        fetch(DATA_SERVICE_URL + '/comments', {
             method: 'Post',
             headers: {
                 'Content-Type': 'application/json',

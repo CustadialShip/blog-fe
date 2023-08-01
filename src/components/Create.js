@@ -4,6 +4,8 @@ import Cookies from "universal-cookie";
 
 
 const Create = () => {
+    const DATA_SERVICE_URL = process.env.REACT_APP_DATA_AUTH_SERVICE;
+
     const cookies = new Cookies();
 
     const [title, setTitle] = useState('');
@@ -19,7 +21,7 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch('/blogs', {
+        fetch(DATA_SERVICE_URL + '/blogs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

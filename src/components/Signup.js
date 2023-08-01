@@ -4,6 +4,8 @@ import {Link, useHistory} from "react-router-dom";
 import jwt from "jwt-decode";
 
 const Signup = () => {
+    const DATA_SERVICE_URL = process.env.REACT_APP_DATA_AUTH_SERVICE;
+
     const cookies = new Cookies();
 
     const [usernameIn, setUsername] = useState('');
@@ -28,7 +30,7 @@ const Signup = () => {
 
         setIsPending(true);
 
-        fetch('/api/v1/auth/register', {
+        fetch(DATA_SERVICE_URL + '/api/v1/auth/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

@@ -5,6 +5,8 @@ import CommentList from "./CommentList";
 
 
 const BlogDetails = () => {
+    const DATA_SERVICE_URL = process.env.REACT_APP_DATA_AUTH_SERVICE;
+
     const cookies = new Cookies();
 
     const {id} = useParams();
@@ -14,7 +16,7 @@ const BlogDetails = () => {
     const history = useHistory();
 
     const handleClick = () => {
-        fetch('/blogs/' + blog.id, {
+        fetch(DATA_SERVICE_URL + '/blogs/' + blog.id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
