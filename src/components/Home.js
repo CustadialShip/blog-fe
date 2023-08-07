@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 const Home = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const {data: responseBlogs, isPending, error} = useFetch('/blogs?page=' + currentPage);
+    const {data: responseBlogs, isPending, error} = useFetch('/api/v1/blogs?page=' + currentPage);
     const [pageNumbers, setPageNumbers] = useState(null);
 
     useEffect(() => {

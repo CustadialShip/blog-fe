@@ -8,7 +8,6 @@ const Create = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('mario');
     const [access , setAccess] = useState('private');
     const [isPending, setIsPending] = useState(false);
     const history = useHistory();
@@ -19,7 +18,7 @@ const Create = () => {
 
         setIsPending(true);
 
-        fetch('/blogs', {
+        fetch('/api/v1/blogs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

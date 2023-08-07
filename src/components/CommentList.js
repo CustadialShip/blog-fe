@@ -7,10 +7,10 @@ const CommentList = ({blogId}) => {
 
     const cookies = new Cookies();
     const [commentMessage, setCommentMessage] = useState('');
-    const {data: comments} = useFetch('/comments/' + blogId);
+    const {data: comments} = useFetch('/api/v1/comments/' + blogId);
 
     const handlePostComment = () => {
-        fetch('/comments', {
+        fetch('/api/v1/comments', {
             method: 'Post',
             headers: {
                 'Content-Type': 'application/json',

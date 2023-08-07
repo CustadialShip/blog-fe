@@ -9,12 +9,12 @@ const BlogDetails = () => {
 
     const {id} = useParams();
 
-    const {data: blog, isPending, error} = useFetch('/blogs/' + id);
-    const {data: isShowDeleteBtn} = useFetch('/blogs/isMy/' + id);
+    const {data: blog, isPending, error} = useFetch('/api/v1/blogs/' + id);
+    const {data: isShowDeleteBtn} = useFetch('/api/v1/blogs/' + id + '/me');
     const history = useHistory();
 
     const handleClick = () => {
-        fetch('/blogs/' + blog.id, {
+        fetch('/api/v1/blogs/' + blog.id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
