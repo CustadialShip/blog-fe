@@ -1,11 +1,10 @@
-import Cookies from "universal-cookie";
 import {useState} from "react";
 import moment from 'moment';
 import useFetch from "../hooks/useFetch";
+import {authHeader} from "../_helpers/auth-header";
 
 const CommentList = ({blogId}) => {
 
-    const cookies = new Cookies();
     const [commentMessage, setCommentMessage] = useState('');
     const {data: comments} = useFetch('/api/v1/comments/' + blogId);
 
@@ -13,8 +12,8 @@ const CommentList = ({blogId}) => {
         fetch('/api/v1/comments', {
             method: 'Post',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
+                ...authHeader(),
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 'blogId': blogId,
@@ -27,14 +26,14 @@ const CommentList = ({blogId}) => {
 
     return (
         <div className="comment-list">
-            <form onSubmit={(e) => true}>
+            <form onClick={handlePostComment}>
                 <input
                     placeholder="Add a comment..."
                     required
                     value={commentMessage}
                     onChange={(e) => setCommentMessage(e.target.value)}
                 />
-                <button onClick={handlePostComment}>Post</button>
+                <button>Post</button>
             </form>
             {comments && comments.map((comment) => (
                 <div className="comment-view" key={comment.id}>

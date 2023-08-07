@@ -1,11 +1,9 @@
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
-import Cookies from "universal-cookie";
+import {authHeader} from "../_helpers/auth-header";
 
 
 const Create = () => {
-    const cookies = new Cookies();
-
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [access , setAccess] = useState('private');
@@ -21,8 +19,8 @@ const Create = () => {
         fetch('/api/v1/blogs', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
+                ...authHeader(),
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(blog),
 

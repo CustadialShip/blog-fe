@@ -1,24 +1,14 @@
-import Cookies from "universal-cookie";
 import {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import jwt from "jwt-decode";
+import {login} from "../_services/login.service";
 
 const Login = () => {
-    const cookies = new Cookies();
     const history = useHistory();
 
     const [usernameIn, setUsername] = useState('');
     const [passwordIn, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isPending, setIsPending] = useState(false);
-
-    const login = (jwt_token) => {
-        const decode = jwt(jwt_token);
-
-        cookies.set("jwt_authorization", jwt_token, {
-            expires: new Date(decode.exp * 1000)
-        });
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();

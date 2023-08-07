@@ -1,12 +1,10 @@
 import {useHistory, useParams} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import Cookies from "universal-cookie";
 import CommentList from "./CommentList";
+import {authHeader} from "../_helpers/auth-header";
 
 
 const BlogDetails = () => {
-    const cookies = new Cookies();
-
     const {id} = useParams();
 
     const {data: blog, isPending, error} = useFetch('/api/v1/blogs/' + id);
@@ -17,8 +15,8 @@ const BlogDetails = () => {
         fetch('/api/v1/blogs/' + blog.id, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
+                ...authHeader(),
+                'Content-Type': 'application/json'
             }
         }).then(() => {
             history.push('/home');

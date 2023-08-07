@@ -1,19 +1,14 @@
 import {Link} from 'react-router-dom';
-import Cookies from "universal-cookie";
-import {useHistory} from "react-router-dom";
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import {useState} from "react";
+import {logout} from "../_services/login.service";
 
 const Navbar = () => {
-    const cookies = new Cookies();
-    const history = useHistory();
-
     const [isNavbarActive, setIsNavbarActive] = useState(false);
 
     const handleClick = () => {
         setIsNavbarActive(!isNavbarActive)
-        cookies.remove('jwt_authorization');
-        history.push('/login');
+        logout();
     }
 
     return(
@@ -24,7 +19,7 @@ const Navbar = () => {
                     <Link onClick={() => setIsNavbarActive(!isNavbarActive)} to="/home">Main</Link>
                     <Link onClick={() => setIsNavbarActive(!isNavbarActive)} to="/create">Create</Link>
                     <Link onClick={() => setIsNavbarActive(!isNavbarActive)} to="/profile">My Profile</Link>
-                    <a onClick={handleClick}>Log out</a>
+                    <Link onClick={handleClick} to="/login">Log out</Link>
                 </span>
                 <span onClick={() => setIsNavbarActive(!isNavbarActive)} className="mobile-btn">
                     {isNavbarActive ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}

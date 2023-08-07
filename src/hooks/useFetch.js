@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
-import Cookies from "universal-cookie";
 import {useHistory} from "react-router-dom";
+import {authHeader} from "../_helpers/auth-header";
 
 const useFetch = (url) => {
-
-    const cookies = new Cookies();
     const history = useHistory();
 
     const [data, setData] = useState(null);
@@ -15,8 +13,8 @@ const useFetch = (url) => {
         fetch(url, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookies.get("jwt_authorization")
+                ...authHeader(),
+                'Content-Type': 'application/json'
             },
         })
         .then(response => {
