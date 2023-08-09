@@ -1,17 +1,19 @@
 import {Link} from 'react-router-dom';
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import {useState} from "react";
-import {logout} from "../_services/login.service";
+import {useDispatch} from "react-redux";
+import {removeToken} from "../store/authSlice";
 
 const Navbar = () => {
+    const dispatch = useDispatch();
     const [isNavbarActive, setIsNavbarActive] = useState(false);
 
     const handleClick = () => {
-        setIsNavbarActive(!isNavbarActive)
-        logout();
+        setIsNavbarActive(!isNavbarActive);
+        dispatch(removeToken());
     }
 
-    return(
+    return (
         <div className="navbar">
             <Link to="/home">
                 <h1>FreeSpace</h1>

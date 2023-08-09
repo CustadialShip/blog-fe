@@ -1,10 +1,10 @@
 import {useState} from "react";
 import moment from 'moment';
 import useFetch from "../hooks/useFetch";
-import {authHeader} from "../_helpers/auth-header";
+import {useSelector} from "react-redux";
 
 const CommentList = ({blogId}) => {
-
+    const token = useSelector(state => state.auth.token);
     const [commentMessage, setCommentMessage] = useState('');
     const {data: comments} = useFetch('/api/v1/comments/' + blogId);
 
@@ -12,7 +12,7 @@ const CommentList = ({blogId}) => {
         fetch('/api/v1/comments', {
             method: 'Post',
             headers: {
-                ...authHeader(),
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

@@ -1,8 +1,10 @@
 import {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {login} from "../_services/login.service";
+import {setToken} from "../store/authSlice";
+import {useDispatch} from "react-redux";
 
 const Signup = () => {
+    const dispatch = useDispatch();
     const [usernameIn, setUsername] = useState('');
     const [passwordIn, setPassword] = useState('');
     const [firstNameIn, setFirstNameIn] = useState('');
@@ -34,7 +36,7 @@ const Signup = () => {
                 return response.json();
             })
             .then(data => {
-                login(data.token);
+                dispatch(setToken(data.token));
                 history.push("/home");
             })
             .catch((err) => {

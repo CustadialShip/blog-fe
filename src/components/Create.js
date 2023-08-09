@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
-import {authHeader} from "../_helpers/auth-header";
+import {useSelector} from "react-redux";
 
 
 const Create = () => {
+    const token = useSelector(state => state.auth.token);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [access , setAccess] = useState('private');
@@ -19,7 +20,7 @@ const Create = () => {
         fetch('/api/v1/blogs', {
             method: 'POST',
             headers: {
-                ...authHeader(),
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(blog),

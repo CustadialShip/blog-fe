@@ -1,12 +1,12 @@
 import {useHistory, useParams} from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import CommentList from "./CommentList";
-import {authHeader} from "../_helpers/auth-header";
+import {useSelector} from "react-redux";
 
 
 const BlogDetails = () => {
+    const token = useSelector(state => state.auth.token);
     const {id} = useParams();
-
     const {data: blog, isPending, error} = useFetch('/api/v1/blogs/' + id);
     const {data: isShowDeleteBtn} = useFetch('/api/v1/blogs/' + id + '/me');
     const history = useHistory();
@@ -15,7 +15,7 @@ const BlogDetails = () => {
         fetch('/api/v1/blogs/' + blog.id, {
             method: 'DELETE',
             headers: {
-                ...authHeader(),
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             }
         }).then(() => {

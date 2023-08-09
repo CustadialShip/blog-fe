@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
-import {authHeader} from "../_helpers/auth-header";
+import {useSelector} from "react-redux";
 
 const useFetch = (url) => {
     const history = useHistory();
-
+    const token = useSelector(state => state.auth.token);
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const useFetch = (url) => {
         fetch(url, {
             method: 'GET',
             headers: {
-                ...authHeader(),
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
         })
@@ -38,7 +38,7 @@ const useFetch = (url) => {
                 history.push("/login");
             }
         })
-    }, [history, url]);
+    }, [token, history, url]);
 
     return {data, isPending, error};
 }
