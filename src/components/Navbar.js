@@ -13,7 +13,9 @@ const Navbar = () => {
 
     return(
         <div className="navbar">
-            <h1>FreeSpace</h1>
+            <Link to="/home">
+                <h1>FreeSpace</h1>
+            </Link>
             <div className="links">
                 <span className={!isNavbarActive ? ["navbar-menu", "navbar-menu-active"].join(' ') : "navbar-menu"}>
                     <Link onClick={() => setIsNavbarActive(!isNavbarActive)} to="/home">Main</Link>
