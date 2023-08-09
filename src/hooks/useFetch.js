@@ -20,9 +20,9 @@ const useFetch = (url) => {
         .then(response => {
             if (!response.ok) {
                 if (response.status === 403) {
-                    throw Error("Not authorized");
+                    throw Error("Forbidden");
                 }
-                throw Error("Failed to fetch data");
+                throw Error("Server Error");
             }
             return response.json();
         })
@@ -32,14 +32,13 @@ const useFetch = (url) => {
             setError(null);
         })
         .catch((err) => {
-            if (err.message === "Not authorized") {
+            setError(err.message);
+            setIsPending(false);
+            if (err.message === "Forbidden") {
                 history.push("/login");
-            } else {
-                setError(err.message);
-                setIsPending(false);
             }
         })
-    }, [url]);
+    }, [history, url]);
 
     return {data, isPending, error};
 }
