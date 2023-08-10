@@ -27,10 +27,10 @@ const Home = () => {
             {responseBlogs && responseBlogs.blogs && <BlogList blogs={responseBlogs.blogs}/>}
             <div className="blogPagination">
                 <Stack spacing={2}>
-                    {pageNumbers && <Pagination count={pageNumbers.length}
+                    {pageNumbers && <Pagination count={pageNumbers.length + 1}
                                                 page={currentPage}
                                                 onChange={handleChange}
-                                                defaultPage={1}/>}
+                                                defaultPage={0}/>}
                 </Stack>
             </div>
         </div>

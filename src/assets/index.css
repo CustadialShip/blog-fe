@@ -52,6 +52,12 @@
   margin-bottom: 8px;
 }
 
+.blog-preview-posted {
+  font-size: 13px;
+  float:right;
+  color: #676767;
+}
+
 .blog-preview span {
   font-size: 14px;
   color: #656565;
