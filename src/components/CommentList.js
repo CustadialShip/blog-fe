@@ -26,7 +26,7 @@ const CommentList = ({blogId}) => {
 
     return (
         <div className="comment-list">
-            <form onClick={handlePostComment}>
+            <form onSubmit={handlePostComment}>
                 <input
                     placeholder="Add a comment..."
                     required
