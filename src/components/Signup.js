@@ -8,7 +8,7 @@ const Signup = () => {
     const [usernameIn, setUsername] = useState('');
     const [passwordIn, setPassword] = useState('');
     const [firstNameIn, setFirstNameIn] = useState('');
-    const [secondNameIn, setSecondNameIn] = useState('');
+    const [lastNameIn, setLastNameIn] = useState('');
     const [error, setError] = useState('');
     const [isPending, setIsPending] = useState(false);
 
@@ -24,7 +24,7 @@ const Signup = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 firstName: firstNameIn,
-                secondName: secondNameIn,
+                lastName: lastNameIn,
                 username: usernameIn,
                 password: passwordIn
             })
@@ -56,13 +56,13 @@ const Signup = () => {
                     value={firstNameIn}
                     onChange={(e) => setFirstNameIn(e.target.value)}
                     placeholder='Enter first name'/>
-                <label>Second name:</label>
+                <label>Last name:</label>
                 <input
                     type="text"
                     required
-                    value={secondNameIn}
-                    onChange={(e) => setSecondNameIn(e.target.value)}
-                    placeholder='Enter second name'/>
+                    value={lastNameIn}
+                    onChange={(e) => setLastNameIn(e.target.value)}
+                    placeholder='Enter last name'/>
                 <label>Username:</label>
                 <input
                     type="text"

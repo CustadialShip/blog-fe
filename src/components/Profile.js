@@ -7,7 +7,7 @@ const Profile = () => {
         <div className="profile">
             {user && (
                 <article>
-                    <h2>{user.firstName} {user.secondName}</h2>
+                    <h2>{user.firstName} {user.lastName}</h2>
                     <p>aka {user.username}</p>
                 </article>
             )}
