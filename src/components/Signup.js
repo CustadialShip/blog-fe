@@ -31,6 +31,9 @@ const Signup = () => {
         })
             .then(response => {
                 if (!response.ok) {
+                    if (response.status === 400) {
+                        throw Error("Username is already in use, try another one");
+                    }
                     throw Error("Something went wrong. Please try again");
                 }
                 return response.json();

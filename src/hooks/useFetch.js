@@ -22,7 +22,7 @@ const useFetch = (url) => {
                 if (response.status === 403) {
                     throw Error("Forbidden");
                 }
-                throw Error("Server Error");
+                throw Error("Something went wrong. Please try again");
             }
             return response.json();
         })
