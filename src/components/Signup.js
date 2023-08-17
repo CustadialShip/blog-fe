@@ -75,7 +75,7 @@ const Signup = () => {
                     placeholder='Enter username'/>
                 <label>Password:</label>
                 <input
-                    type="text"
+                    type="password"
                     required
                     value={passwordIn}
                     onChange={(e) => setPassword(e.target.value)}
